@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class funcionesCargo extends Model
 {
-    //
+    protected $fillable = [
+        'descripcion_fincion',
+        'estado'
+    ];
 }
