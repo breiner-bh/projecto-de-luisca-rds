@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
 {
-    public function strore (Request $request)
+    public function store (Request $request)
     {
         return Empleado::create([
         'nombre' =>$request ->nombre,
@@ -15,7 +15,8 @@ class EmpleadoController extends Controller
         'fecha_de_nacimiento' => $request -> fecha_de_nacimiento,
         'fecha_de_ingreso' => $request -> fecha_de_ingreso,
         'salario' => $request -> salario,
-        'estado' => $request -> estado
+        'estado' => $request -> estado,
+        'id_cargo' => $request -> id_cargo
     ]);
     }
 
@@ -35,7 +36,8 @@ class EmpleadoController extends Controller
             'Fecha_de_nacimiento'=> $request -> fecha_de_nacimiento,
             'Fecha_de_ingreso'=> $request -> fecha_de_ingreso,
             'salario' => $request -> salario,
-            'estado' => $request -> estado            
+            'estado' => $request -> estado,
+            'id_cargo' => $request -> id_cargo            
         ]);
         return $empleado;
     }

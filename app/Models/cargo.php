@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class cargo extends Model
 {
     protected $fillable = [
+        'id',
         'nombre_cargo',
-        'description'
+        'descripcion'
     ];
 }

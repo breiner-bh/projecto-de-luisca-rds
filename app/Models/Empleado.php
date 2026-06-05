@@ -12,6 +12,7 @@ class Empleado extends Model
         'fecha_de_nacimiento',
         'fecha_de_ingreso',
         'salario',
-        'estado'
+        'estado',
+        'id_cargo'
     ]; 
 }

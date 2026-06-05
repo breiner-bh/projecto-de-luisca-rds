@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('apellido')->nullable(true);
             $table->date('fecha_de_nacimiento')->nullable(true);
             $table->date('fecha_de_ingreso')->nullable(true);
-            $table->boolean('salario')->nullable(true);
-            $table->string('estado')->nullable(false);
+            $table->decimal('salario',10,2)->nullable(true);
+            $table->string('estado')->nullable(true);
+            $table->unsignedBigInteger('id_cargo')->nullable(true);
             $table->timestamps();
         });
     }
