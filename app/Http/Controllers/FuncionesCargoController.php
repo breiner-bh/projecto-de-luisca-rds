@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\funcionesCargo;
+use App\Models\FuncionesCargo;
 use Illuminate\Http\Request;
 
 class FuncionesCargoController extends Controller
@@ -15,13 +15,13 @@ class FuncionesCargoController extends Controller
     }
     public function index()
     {
-        return funcionesCargo::all();
+        return FuncionesCargo::all();
     }
-    public function show(funcionesCargo $funcionesCargo)
+    public function show(FuncionesCargo $funcionesCargo)
     {
         return $funcionesCargo;
     }
-    public function update(Request $request,funcionesCargo $funcionesCargo)
+    public function update(Request $request,FuncionesCargo $funcionesCargo)
     {
         $funcionesCargo->update([
             'nombre'=>$request->nombre,
@@ -29,7 +29,7 @@ class FuncionesCargoController extends Controller
         ]);
         return $funcionesCargo;
     }
-    public function destroy(funcionesCargo $funcionesCargo)
+    public function destroy(FuncionesCargo $funcionesCargo)
     {
         $funcionesCargo->delete();
         return response()->json([

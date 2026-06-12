@@ -21,25 +21,25 @@ class EmpleadoFactory extends Factory
             'nombre'=>fake()->firstName(),
             'apellido'=>fake()->lastName(),
             'fecha_de_nacimiento'=>fake()->date(),
-            'fecha_de_ingreso'=>fake()->now(),
+            'fecha_de_ingreso'=>fake()->date(),
             'salario'=>3000000,
             'estado'=>'activo',
-            'id_cargo'=>1
+            'id_cargo'=>1  
         ];
     }
-    public function Test_puede_listar_empleados()
+ /*   public function test_puede_listar_empleados()
     {
         Empleado::factory()->count(10)->create();
         $response = $this->getjson('/api/empleados');
         $response->assertStatus(200);
     }
-    public function Test_puede_puede_ver_un_empleado()
+    public function test_puede_ver_un_empleado()
     {
         $empleado = Empleado::factory()->create();
         $response = $this->getjson('/api/empleados/'.$empleado->id);
         $response->assertStatus(200);
     }
-    public function Test_puede_actualizar_un_empleado()
+    public function test_puede_actualizar_un_empleado()
     {
         $empleado = Empleado::factory()->create();
         $response = $this->putjson('/api/empleados/'.$empleado->id, [
@@ -63,4 +63,5 @@ class EmpleadoFactory extends Factory
             'id_cargo'=>$empleado->id_cargo
         ]);
     }
+    */
 }

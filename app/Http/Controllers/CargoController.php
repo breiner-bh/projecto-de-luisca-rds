@@ -25,8 +25,7 @@ class CargoController extends Controller
     public function update(Request $request, Cargo $cargo)
     {
         $cargo->update([
-            'id'=>$request->id,
-            'nombre_cargo'=>$request->nombre,
+            'nombre_cargo'=>$request->nombre_cargo,
             'descripcion'=>$request->descripcion
         ]);
         return $cargo;

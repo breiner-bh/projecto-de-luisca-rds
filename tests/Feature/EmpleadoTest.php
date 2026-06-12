@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 use App\Models\Empleado;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -29,5 +30,57 @@ class EmpleadoTest extends TestCase
             'estado' => 'activo',
             'id_cargo' => 1
         ]);
+    }
+    public function test_puede_listar_empleados()
+    {
+        Empleado::factory()->count(30)->create();
+        $response = $this->getjson('api/empleados');
+        $response->assertStatus(200);
+    }
+    public function test_puede_ver_un_empleado()
+    {
+        $empleado = Empleado::factory()->create();
+        $response = $this->getjson('api/empleados/'.$empleado->id);
+        $response->assertStatus(200);
+    }
+    public function test_puede_actualizar_un_empleado()
+    {
+        $empleado = Empleado::factory()->create();
+        $response = $this->putjson('api/empleados/'.$empleado->id, [
+            'nombre'=>fake()->firstName(),
+            'apellido'=>fake()->lastName(),
+            'fecha_de_nacimiento'=>fake()->date(),
+            'fecha_de_ingreso'=>fake()->date(),
+            'salario'=>3000000,
+            'estado'=>'activo',
+            'id_cargo'=>1
+        ]);
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('empleados', [
+            'id'=>$empleado->id,
+            'nombre'=>$empleado->nombre,
+            'apellido'=>$empleado->apellido,
+            'fecha_de_nacimiento'=>$empleado->fecha_de_nacimiento,
+            'fecha_de_ingreso'=>$empleado->fecha_de_ingreso,
+            'salario'=>$empleado->salario,
+            'estado'=>$empleado->estado,
+            'id_cargo'=>$empleado->id_cargo
+        ]);
+    }
+    public function test_puedes_eliminar_empleado()
+    {
+        $empleado = Empleado::factory()->create();
+        $response = $this->deleteJson('api/empleados/' .$empleado->id);
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('empleados',[
+            'nombre'=>$empleado-> nombre,
+            'apellido'=>$empleado->apellido,
+            'fecha_de_nacimiento'=>$empleado->fecha_de_nacimiento,
+            'fecha_de_ingreso'=>$empleado->fecha_de_ingreso,
+            'salario'=>$empleado->salario,
+            'estado'=>$empleado->estado,
+            'id_cargo'=>$empleado->id_cargo
+        ]);
+
     }
 }
