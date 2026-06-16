@@ -10,6 +10,13 @@ use Tests\TestCase;
 class EmpleadoTest extends TestCase 
 {
     use RefreshDatabase;
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+        $user =\App\Models\User::factory()->create();
+        $this->actingAs($user, 'sanctum');
+    }
     public function test_crear_empleado()
     {
         $this->postjson('/api/empleados',[

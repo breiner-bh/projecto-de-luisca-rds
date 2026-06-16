@@ -9,6 +9,13 @@ use Tests\TestCase;
 class CargoTest extends TestCase
 {
     use RefreshDatabase;
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+        $user =\App\Models\User::factory()->create();
+        $this->actingAs($user, 'sanctum');
+    }
     public function  test_puedes_crear_cargo()
     {
        $datos = [

@@ -56,3 +56,209 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+Creador : Breiner Bermudez Hernandez
+
+desgarda y instalacion del proyecto:
+
+entrar a github
+ya estan adentro del github buscar en el cuadro que dise: Find a repository
+
+colocar lo sigiente: projecto-de-luisca-rds hacerle click al nombre
+
+despues que cargue el proyecto dale click al boton verde que dice: <> Code   
+
+copiar el enlace: https://github.com/breiner-bh/projecto-de-luisca-rds.git 
+
+en el escritorio del computador precionar click derecho y seleccionar la opcion que dice:
+
+abrir en terminal 
+
+despues que carque y que aparesca la linea parecida a :
+
+PS C:\Users\herna\OneDrive\Desktop\trabajos de luiscarlos de github>
+
+coloca : git clone https://github.com/breiner-bh/projecto-de-luisca-rds.git
+
+esperar a que se descarge el proyecto y todos sus archivo 
+
+despues abrir Visual Studio code
+
+despues arrastrar la carpeta visual studio code o
+estando dentro del Visual Studio code precionar las teclas Ctrl + O la tecla "o"
+
+buscar donde dice escritorio la carpeta con el nombre: projecto-de-luisca-rds y darle al boton que dice Abrir.
+
+despues que ya que tenga la carpeta abierta en Visual Studio code 
+
+despues tiene que seleccionar el archivo que tiene por nombre de: .env.example
+
+debe de copiar y pegar ese acrchivo despues debera de cambiarle el nombre 
+.env copy.example por:
+.env
+
+y estadonde dentro de ese archo debe de buscar 
+
+DB_CONNECTION=sql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=laravel     
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+debe de cambiarlo por :
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_3066552
+DB_USERNAME=root
+DB_PASSWORD=242530*
+
+despues en el escritorio de su computador debe de abrir MySQL Workbench
+
+ingresar su contraseña y despues que ingrese por conpleto a MySQL 
+colocar: create database db_3066552 para poder crear la base de dato en MySQL y debe de recargar MySQL despues debe de dirigirse a Visual Studio Code 
+
+y despues debe de precionar las teclas:  Ctrl + J que eso abrirar la terninal en visual estudio code
+
+despues escribir en la linea que aparece en la terminal de visual estudio :
+
+PS C:\Users\herna\OneDrive\Desktop\trabajos de luiscarlos de github\projecto-de-luisca-rds>
+
+debe escribir : composer install 
+
+y darle a enter o la tecla que dice intro
+
+y esperar a que carge debe de colocar en la misma linea despues de que carge el composer install debe en la linea que le sige de colocar: 
+
+php artisan migrate 
+
+despues debe de colocar: php artisan test
+
+si por alguna razondo de aparece un error parecido a: 
+
+FAILED  Tests\Feature\CargoTest > example                                          MissingAppKeyException   
+No application encryption key has been specified.
+
+no debe de preocuparce debe de colocar en la lina: 
+
+PS C:\Users\herna\OneDrive\Desktop\trabajos de luiscarlos de github\projecto-de-luisca-rds>
+
+debe de colocar : php artisan key:generate
+
+darle a enter
+
+y despues le debe de aparecer un mensaje parecido a:
+
+INFO Application key set successfully.
+
+despues debe de colocar el comando: php artisan config:clear
+
+despues le debe de aparecer otro mensaje parecido a:
+
+INFO Configuration cache cleared successfully.
+
+luego debe de colocar el comando:
+
+php artisan cache:clear
+
+despues le debe de aparecer otro mensaje parecido a:
+
+INFO  Application cache cleared successfully.
+
+despues debes de verificar en el archivo .env y debes bucar:
+ 
+ APP_KEY=
+
+y debes de aparecer algo por ejemplo:
+
+APP_KEY=base64:F6YhAKaqa/2cbSLXP6HVjiucNfd/87Bpik6kIuwXfEo=
+
+entoces la clabe ya existe y despues debe de colocar en la terminal de Visual Studio Code 
+debes de colocar nuevamente el comando de:
+
+php artisan test
+
+y todo debe de aparecer con chulitos verdes que significara OK.
+
+
+
+despues debes de el comando de:
+
+php artisan tinker
+
+despues te va aparecer una
+">"
+debes de agregar lo siguiente:
+
+App\Models\User::first();
+
+y te va aparecer:
+
+= null
+
+y va aparecer otra:
+">"
+y tienes que agregar: use App\Models\User;
+
+y tambien tienes que agregar: use Illuminate\Support\Facedes\Hash;
+
+te aparecera otra:
+
+">"
+
+debes agregar User::create([
+    . 'name' => 'Breiner',
+    . 'email' => 'breiner@gmail.com',
+    . 'password' => bcrypt('123456'),
+    . ]);
+
+despues de darle enter o intro y te va aparecer algo parecido a:
+
+= App\Models\User {#1582
+    name: "Breiner",
+    email: "breiner@gmail.com",
+    #password: "\$2y\$12\$pVoOYmOcuDmaNpH84NbqHeQftZQtAwoB6V5weVmIC5LQKhQ84MWjO",
+    updated_at: "2026-06-16 04:41:13",
+    created_at: "2026-06-16 04:41:13",
+    id: 1,
+  }
+
+despues te va a parecer un: 
+
+">"
+
+tienes que agrearle lo sigiente: exit
+
+y te debe aparecer un mesaje:
+
+INFO  Goodbye.
+
+despues debes de correr el comando de: php artisan serve
+
+despues de eso tienes que abrir una nueva terminal pero de Git Bash para abrirlo desde donde estas tienes que darle a
+
+la flecha que esta en el signo de "+" y debes de seleccionar Git Bash.
+
+despues que se habra la terminal de Git Bash tienes que agregar la siguiente linea de comando:
+
+curl -X POST "http://127.0.0.1:8000/api/login" -H "Content-Type: application/json" -d '{"email":"breiner@gmail.com","password":"123456"}'
+
+despues de eso te debe de carcar una llave token por ejemplo:
+
+{"token":"1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea"}
+
+despues tendras que colocar el siguiente comando:
+
+curl -X POST "http://127.0.0.1:8000/api/empleados" \
+-H "Authorization: Bearer TU_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{"nombre":"Breiner","apellido":"Bermudez","fecha_de_nacimiento":"2003-06-24","fecha_de_ingreso":"2026-07-15","salario":300000,"estado":"activo","id_cargo":1}'
+
+y tendrias que cambiar lo que dice TU_TOKEN por 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea
+
+que en el caso de este ejemplo la llave token seria: 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea
+
+despues de hacer este cambio tendrias que darle a enter y esto lo que tendria que hacer es crear y agregar el usuario
+creado a la base de datos.

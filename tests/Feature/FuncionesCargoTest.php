@@ -13,6 +13,8 @@ class FuncionesCargoTest extends TestCase
     {
         parent::setUp();
         $this->seed();
+        $user =\App\Models\User::factory()->create();
+        $this->actingAs($user, 'sanctum');
     }
     public function test_funcines_cargo_index(): void
     {
