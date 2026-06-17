@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('descripcion_funcion')->nullable();
             $table->string('estado');
-            $table->foreignId('cargo_id')->constrained('cargos')->onDelete('cascade');
+            $table->foreignId('id_cargo')->constrained('cargos')->onDelete('cascade');
             $table->timestamps();
         });
     }

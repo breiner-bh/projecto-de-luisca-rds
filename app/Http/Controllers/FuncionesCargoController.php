@@ -8,7 +8,7 @@ class FuncionesCargoController extends Controller
 {
     public function store(Request $request)
     {
-        return FuncionesCargoController::create([
+        return FuncionesCargo::create([
             'nombre'=>$request->nombre,
             'descripcion'=>$request->description
         ]);

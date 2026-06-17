@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CargoSeeder;
+use Database\Seeders\FuncionCargoSeeder;
+use Database\Seeders\EmpleadosSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,5 +24,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        $this->call([
+        CargoSeeder::class,
+        FuncionCargoSeeder::class,
+    ]);
+
+        $this->call([
+        EmpleadosSeeder::class,
+    ]);
+
+    $this->call([
+        FuncionCargoSeeder::class,
+    ]);
     }
 }

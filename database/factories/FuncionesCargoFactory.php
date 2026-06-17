@@ -6,7 +6,7 @@ use App\Models\FuncionCargo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<=funcionCargo>
+ * @extends Factory<=funcionesCargo>
  */
 class FuncionesCargoFactory extends Factory
 {
@@ -18,8 +18,9 @@ class FuncionesCargoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre'=>fake()->firstName(),
-            'descripcion'=>fake()->text()
+            'descripcion_funcion'=>fake()->text(),
+            'estado'=>fake()->randomElement(['activo','inactivo']),
+            'id_cargo'=>fake()->numberBetween(1,5)
         ];
     }
 }
