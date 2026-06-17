@@ -22,4 +22,19 @@ class AuthController extends Controller
             return response()->json(['message' => 'Credenciales invalidas'], 401);
         }
     }
+    public function register(Request $request)
+    {
+        $datos = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8']
+        ]);
+        $user = \App\Models\User::create([
+            'name' => $datos['name'],
+            'email' => $datos['email'],
+            'password' => bcrypt($datos['password'])
+        ]);
+        $token = $user->createToken('token')->plainTextToken;
+        return response()->json(['token' => $token, 'message' => 'Usuario creado con éxito'], 201);
+    }
 }

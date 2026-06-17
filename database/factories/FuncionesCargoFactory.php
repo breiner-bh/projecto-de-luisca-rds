@@ -6,7 +6,7 @@ use App\Models\FuncionCargo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<=funcionesCargo>
+ * @extends Factory<funcionesCargo>
  */
 class FuncionesCargoFactory extends Factory
 {
@@ -20,7 +20,7 @@ class FuncionesCargoFactory extends Factory
         return [
             'descripcion_funcion'=>fake()->text(),
             'estado'=>fake()->randomElement(['activo','inactivo']),
-            'id_cargo'=>fake()->numberBetween(1,5)
+            'id_cargo'=>fake()->numberBetween(1,5),
         ];
     }
 }

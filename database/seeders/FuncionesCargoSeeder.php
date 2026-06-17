@@ -6,13 +6,13 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\FuncionesCargo;
 
-class FuncionCargoSeeder extends Seeder
+class FuncionesCargoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        FuncionesCargo::factory(5)->create();
+        FuncionesCargo::factory(05)->create();
     }
 }

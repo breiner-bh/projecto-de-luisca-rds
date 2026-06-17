@@ -167,7 +167,11 @@ despues le debe de aparecer otro mensaje parecido a:
 
 INFO  Application cache cleared successfully.
 
+<<<<<<< HEAD
 despues debes de verificar en el archivo .env y debes bucar:
+=======
+despues debes de de verificar en el archivo .env y debes bucar:
+>>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
  
  APP_KEY=
 
@@ -180,14 +184,22 @@ debes de colocar nuevamente el comando de:
 
 php artisan test
 
+<<<<<<< HEAD
 y todo debe de aparecer con chulitos verdes que significara OK.
+=======
+y todo debe de aparecer con culitos verdes que significara OK.
+>>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
 
 
 
 despues debes de el comando de:
+<<<<<<< HEAD
 
 php artisan tinker
 
+=======
+php artisan tinker
+>>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
 despues te va aparecer una
 ">"
 debes de agregar lo siguiente:
@@ -214,7 +226,11 @@ debes agregar User::create([
     . 'password' => bcrypt('123456'),
     . ]);
 
+<<<<<<< HEAD
 despues de darle enter o intro y te va aparecer algo parecido a:
+=======
+despues de darle enter o intro te va aparecer algo parecido a:
+>>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
 
 = App\Models\User {#1582
     name: "Breiner",
@@ -261,4 +277,10 @@ y tendrias que cambiar lo que dice TU_TOKEN por 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3Q
 que en el caso de este ejemplo la llave token seria: 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea
 
 despues de hacer este cambio tendrias que darle a enter y esto lo que tendria que hacer es crear y agregar el usuario
+<<<<<<< HEAD
 creado a la base de datos.
+=======
+greado a la base de datos.
+
+
+>>>>>>> f96ac54 (mejoramiento de los avances del proyecto)

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_cargo')->nullable(true);
-            $table->string('descripcion')->nullable(true);
+            $table->string('nombre_cargo')->nullable(true)->unique();
+            $table->string('descripcion')->nullable(true)->unique();
             $table->timestamps();
         });
     }

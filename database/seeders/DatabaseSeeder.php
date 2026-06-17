@@ -1,13 +1,15 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Cargo;
+use App\Models\FuncionesCargo;
+use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CargoSeeder;
-use Database\Seeders\FuncionCargoSeeder;
-use Database\Seeders\EmpleadosSeeder;
+use Database\Seeders\FuncionesCargoSeeder;
+use Database\Seeders\EmpleadoSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,16 +27,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $this->call([
-        CargoSeeder::class,
-        FuncionCargoSeeder::class,
-    ]);
-
-        $this->call([
-        EmpleadosSeeder::class,
-    ]);
-
-    $this->call([
-        FuncionCargoSeeder::class,
-    ]);
+            CargoSeeder::class,
+            FuncionesCargoSeeder::class,
+            EmpleadoSeeder::class
+        ]);
     }
 }

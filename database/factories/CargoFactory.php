@@ -4,8 +4,9 @@ namespace Database\Factories;
 use App\Models\Cargo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
 /**
- * @extends Factory<cargos>
+ * @extends Factory<Cargo>
  */
 class CargoFactory extends Factory
 {

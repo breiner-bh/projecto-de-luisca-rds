@@ -9,17 +9,17 @@ use Tests\TestCase;
 class CargoTest extends TestCase
 {
     use RefreshDatabase;
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->seed();
-        $user =\App\Models\User::factory()->create();
+        $user = \App\Models\User::factory()->create();
         $this->actingAs($user, 'sanctum');
     }
     public function  test_puedes_crear_cargo()
     {
        $datos = [
-        'nombre_cargo' => fake()->firstName(),
+        'nombre_cargo' => fake()->FirstName(),
         'descripcion' => fake()->text()
        ];
        $this->postJson('/api/cargos', $datos );
@@ -60,72 +60,6 @@ class CargoTest extends TestCase
             'descripcion'=>$cargo->descripcion
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * A basic feature test example.
