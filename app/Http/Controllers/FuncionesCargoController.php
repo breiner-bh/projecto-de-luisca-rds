@@ -72,4 +72,5 @@ class FuncionesCargoController extends Controller
             'data' => $eliminadofuncionesCargo
         ],200);
     }
+    
 }

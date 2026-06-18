@@ -169,10 +169,8 @@ INFO  Application cache cleared successfully.
 
 <<<<<<< HEAD
 despues debes de verificar en el archivo .env y debes bucar:
-=======
-despues debes de de verificar en el archivo .env y debes bucar:
->>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
- 
+
+ git
  APP_KEY=
 
 y debes de aparecer algo por ejemplo:
@@ -277,10 +275,4 @@ y tendrias que cambiar lo que dice TU_TOKEN por 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3Q
 que en el caso de este ejemplo la llave token seria: 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea
 
 despues de hacer este cambio tendrias que darle a enter y esto lo que tendria que hacer es crear y agregar el usuario
-<<<<<<< HEAD
 creado a la base de datos.
-=======
-greado a la base de datos.
-
-
->>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
