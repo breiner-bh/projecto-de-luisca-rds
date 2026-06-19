@@ -10,17 +10,14 @@ class EmpleadoController extends Controller
     public function store (Request $request)
     {
         $datos = $request->validate([
-            'nombre' => ['required', 'string','max:255','unique:empleado'],
-            'apellido' =>['required','string','max:255','unique:empleados'],
-            'fecha_de_nacimiento' => ['required','date','before:today'],
-            'fecha_de_ingreso' => ['required','date','before\or\_equal:today'],
+            'nombre' => ['required', 'string','max:255'],
+            'apellido' =>['required','string','max:255'],
+            'fecha_de_nacimiento' => ['required','date','before_or_equal:today'],
+            'fecha_de_ingreso' => ['required','date','before_or_equal:today'],
             'salario' => ['required','numeric'],
-            'estado' => ['required','string','max = 255'],
-            'id_cargo' => ['required','integer','exists:cargos'],
-            ],
-            [
-                'nombre.unique'=>'No puede duplicar el nombre del empleado.',
-                'apellido.unique' =>'No se puede duplicar el apellido del empleado.',
+            'estado' => ['required','string','max:255'],
+            'id_cargo' => ['required','integer','exists:cargos,id'],
+            
         ]);
         $empleado = Empleado::create([
         'nombre' =>$datos['nombre'],
@@ -40,11 +37,20 @@ class EmpleadoController extends Controller
 
     public function index()
     {
-        return response()->json([
-            'success' => true,
-            "message"=>'Lista de los empleados',
-            'data'=>Empleado::paginate(5)
-        ], 200);
+        $empleados = Empleado::paginate(5);
+        if($empleados->isEmpty())
+            {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'No se encontradon empleados registrados',
+                ],404);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'lista de los empleados encontrados',
+                    'data' => $empleados
+                ], 200);
+            }
     }
     public function show(Empleado $empleado)
     {

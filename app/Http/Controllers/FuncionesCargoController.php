@@ -29,12 +29,24 @@ class FuncionesCargoController extends Controller
     }
     public function index()
     {
-        return response()->json([
-            'success' => true,
-            'message'=>'Lista de funciones del cargo',
-            'data' => FuncionesCargo::paginate(5)
-        ], 200);
+       function index()
+    {
+        $FuncionesCargo = FuncionesCargo::paginate(5);
+        if($FuncionesCargo->isEmpty())
+            {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'No se encontradon registros de las funciones de cargo',
+                ],404);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'lista de las funciones de cargo',
+                    'data' => $FuncionesCargo
+                ], 200);
+            }
         
+    }
     }
     public function show(FuncionesCargo $funcionesCargo)
     {

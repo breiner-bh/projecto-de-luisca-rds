@@ -5,6 +5,7 @@ use App\Models\Empleado;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Arr;
 use Tests\TestCase;
 
 class EmpleadoTest extends TestCase 
@@ -24,8 +25,8 @@ class EmpleadoTest extends TestCase
             'apellido'=>'Bermudez',
             'fecha_de_nacimiento'=>'2003-06-24',
             'fecha_de_ingreso'=>'2026-07-15',
-            'salario'=>3000000,
-            'estado'=>'activo',
+            'salario'=>fake()->numberBetween(1000000,5000000),
+            'estado'=>Arr::random('activo','inactivo'),
             'id_cargo'=>1
         ]);
         $this->assertDatabaseHas('empleados', [

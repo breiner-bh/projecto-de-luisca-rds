@@ -10,12 +10,9 @@ class CargoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->validate([
-            'nombre_cargo' => ['required', 'string', 'max:350','unique:cargos'],
-            'descripcion' => ['required', 'string', 'max:350','unique:cargos'],
-            [
-                'nombre_cargo.unique'=>'No se puede dupliacar el nombre de cargo',
-                'descripcion.unique' =>'NO se puede duplicar la descripcion del cargo'
-            ]
+            'nombre_cargo' => ['required', 'string', 'max:350'],
+            'descripcion' => ['required', 'string', 'max:350'],
+
         ]);
         $Cargo = Cargo::create([
             'nombre_cargo' => $datos['nombre_cargo'],
@@ -29,11 +26,22 @@ class CargoController extends Controller
     }
     public function index()
     {
-        return response()->json([
-            'success' => true,
-            'message' => 'Lista de los cargos',
-            'data' => Cargo::paginate(5)
-        ], 200);
+        function index()
+        {
+            $cargo = Cargo::paginate(5);
+            if ($cargo->isEmpty()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'No se encontradon cargo',
+                ], 404);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Lista de los cargos',
+                    'data' => $cargo
+                ], 200);
+            }
+        }
     }
     public function show(Cargo $cargo)
     {
@@ -59,10 +67,10 @@ class CargoController extends Controller
             'data' => $cargo
         ], 200);
     }
-    public function destroy( int $id)
+    public function destroy(int $id)
     {
         $cargo = Cargo::find($id);
-        if (is_null($cargo)){
+        if (is_null($cargo)) {
             return response()->json([
                 'success' => true,
                 'message' => 'El cargo que esta buscando no existe.',

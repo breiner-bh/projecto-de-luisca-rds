@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable(true)->unique();
-            $table->string('apellido')->nullable(true)->unique();
+            $table->string('nombre')->nullable(true);
+            $table->string('apellido')->nullable(true);
             $table->date('fecha_de_nacimiento')->nullable(true);
             $table->date('fecha_de_ingreso')->nullable(true);
             $table->decimal('salario',10,2)->nullable(true);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -17,24 +18,56 @@ class AuthController extends Controller
             /**@var \App\Models\User $user */
             $user = Auth::user();
             $token = $user->createToken('token')->plainTextToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json([
+                'success'=>true,
+                'token' => $token,
+                'message'=>'usuario  a creado sesion con exito',
+                'data' => $user
+                ], 200);
         } else {
-            return response()->json(['message' => 'Credenciales invalidas'], 401);
+            return response()->json([
+                'success' => true,
+                'message' => 'Credenciales invalidas'
+                ], 401);
         }
     }
     public function register(Request $request)
     {
-        $datos = $request->validate([
+        $validator = Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255','unique:users,email'],
             'password' => ['required', 'string', 'min:8']
+        ],
+            [
+                'email.unique'=>'el correo del usuario que deseas ingresar ya se encuentra registrado'
+    
         ]);
+        if ($validator->fails()) {
+        return response()->json([
+            'message' => $validator->errors()->first()
+        ], 422);
+    }
+    $datosvalidatos = $validator->validated();
         $user = \App\Models\User::create([
-            'name' => $datos['name'],
-            'email' => $datos['email'],
-            'password' => bcrypt($datos['password'])
+            'name' => $datosvalidatos['name'],
+            'email' => $datosvalidatos['email'],
+            'password' => bcrypt($datosvalidatos['password'])
         ]);
         $token = $user->createToken('token')->plainTextToken;
-        return response()->json(['token' => $token, 'message' => 'Usuario creado con éxito'], 201);
+        return response()->json([
+            'success'=>true,
+            'token' => $token, 
+            'message' => 'Usuario creado',
+            'data'=>$user
+            ], 201);
+    }
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Cierre de sesion exitosa'
+        ],200);
     }
 }
+
