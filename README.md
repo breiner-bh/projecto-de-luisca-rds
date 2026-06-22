@@ -57,222 +57,483 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-Creador : Breiner Bermudez Hernandez
+# Proyecto de Gestión de Empleados, Cargos y Funciones de Cargo
 
-desgarda y instalacion del proyecto:
+## Autor
 
-entrar a github
-ya estan adentro del github buscar en el cuadro que dise: Find a repository
+**Breiner Bermúdez Hernández**
 
-colocar lo sigiente: projecto-de-luisca-rds hacerle click al nombre
+## Descripción
 
-despues que cargue el proyecto dale click al boton verde que dice: <> Code   
+Este proyecto permite realizar operaciones CRUD sobre los siguientes módulos:
 
-copiar el enlace: https://github.com/breiner-bh/projecto-de-luisca-rds.git 
+* Empleados
+* Cargos
+* Funciones de Cargo
 
-en el escritorio del computador precionar click derecho y seleccionar la opcion que dice:
+Además, incluye un endpoint especial para consultar los detalles completos de un empleado, incluyendo:
 
-abrir en terminal 
+* Nombre
+* Apellido
+* Cargo
+* Salario
+* Funciones asociadas a su cargo
 
-despues que carque y que aparesca la linea parecida a :
+Todas las rutas principales están protegidas mediante **Laravel Sanctum**.
 
-PS C:\Users\herna\OneDrive\Desktop\trabajos de luiscarlos de github>
+### Rutas públicas
 
-coloca : git clone https://github.com/breiner-bh/projecto-de-luisca-rds.git
+* `POST /api/register`
+* `POST /api/login`
 
-esperar a que se descarge el proyecto y todos sus archivo 
+---
 
-despues abrir Visual Studio code
+# Requisitos
 
-despues arrastrar la carpeta visual studio code o
-estando dentro del Visual Studio code precionar las teclas Ctrl + O la tecla "o"
+Antes de instalar el proyecto, asegúrate de tener instalado:
 
-buscar donde dice escritorio la carpeta con el nombre: projecto-de-luisca-rds y darle al boton que dice Abrir.
+* PHP 8.3 o superior
+* Composer
+* MySQL
+* Node.js y NPM
+* Git
+* Laravel compatible con la versión del proyecto
+* Postman, Insomnia o curl para probar la API
 
-despues que ya que tenga la carpeta abierta en Visual Studio code 
+## Tecnologías utilizadas
 
-despues tiene que seleccionar el archivo que tiene por nombre de: .env.example
+* Laravel `^13.8`
+* Laravel Sanctum `^4.0`
+* PHP `^8.3`
 
-debe de copiar y pegar ese acrchivo despues debera de cambiarle el nombre 
-.env copy.example por:
-.env
+---
 
-y estadonde dentro de ese archo debe de buscar 
+# Instalación del Proyecto
 
-DB_CONNECTION=sql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=laravel     
-# DB_USERNAME=root
-# DB_PASSWORD=
+## 1. Clonar el repositorio
 
-debe de cambiarlo por :
+```bash
+git clone https://github.com/breiner-bh/projecto-de-luisca-rds.git
+```
 
+Ingresar a la carpeta del proyecto:
+
+```bash
+cd projecto-de-luisca-rds
+```
+
+---
+
+## 2. Instalar dependencias de Composer
+
+```bash
+composer install
+```
+
+---
+
+## 3. Instalar dependencias de Node.js
+
+```bash
+npm install
+```
+
+Este comando instala las dependencias de frontend definidas en el archivo `package.json`.
+
+---
+
+## 4. Crear el archivo `.env`
+
+Laravel utiliza un archivo `.env` para almacenar la configuración local.
+
+Linux / Git Bash:
+
+```bash
+cp .env.example .env
+```
+
+PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+---
+
+## 5. Generar la clave de la aplicación
+
+```bash
+php artisan key:generate
+```
+
+---
+
+## 6. Configurar la base de datos
+
+Abrir el archivo `.env` y configurar:
+
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=db_3066552
 DB_USERNAME=root
-DB_PASSWORD=242530*
+DB_PASSWORD=
+```
 
-despues en el escritorio de su computador debe de abrir MySQL Workbench
+Modificar los valores según tu entorno:
 
-ingresar su contraseña y despues que ingrese por conpleto a MySQL 
-colocar: create database db_3066552 para poder crear la base de dato en MySQL y debe de recargar MySQL despues debe de dirigirse a Visual Studio Code 
+* `DB_DATABASE`: nombre de tu base de datos.
+* `DB_USERNAME`: usuario de MySQL.
+* `DB_PASSWORD`: contraseña de MySQL.
 
-y despues debe de precionar las teclas:  Ctrl + J que eso abrirar la terninal en visual estudio code
+---
 
-despues escribir en la linea que aparece en la terminal de visual estudio :
+## 7. Crear la base de datos
 
-PS C:\Users\herna\OneDrive\Desktop\trabajos de luiscarlos de github\projecto-de-luisca-rds>
+Ingresar a MySQL y ejecutar:
 
-debe escribir : composer install 
+```sql
+CREATE DATABASE db_3066552;
+```
 
-y darle a enter o la tecla que dice intro
+---
 
-y esperar a que carge debe de colocar en la misma linea despues de que carge el composer install debe en la linea que le sige de colocar: 
+## 8. Ejecutar las migraciones
 
-php artisan migrate 
+```bash
+php artisan migrate
+```
 
-despues debe de colocar: php artisan test
+Este comando crea todas las tablas necesarias.
 
-si por alguna razondo de aparece un error parecido a: 
+---
 
-FAILED  Tests\Feature\CargoTest > example                                          MissingAppKeyException   
-No application encryption key has been specified.
+## 9. Ejecutar los seeders
 
-no debe de preocuparce debe de colocar en la lina: 
+```bash
+php artisan db:seed
+```
 
-PS C:\Users\herna\OneDrive\Desktop\trabajos de luiscarlos de github\projecto-de-luisca-rds>
+Para recrear completamente la base de datos:
 
-debe de colocar : php artisan key:generate
+```bash
+php artisan migrate:fresh --seed
+```
 
-darle a enter
+> ⚠️ Este comando elimina todas las tablas y vuelve a crearlas. Úsalo únicamente si no necesitas conservar los datos actuales.
 
-y despues le debe de aparecer un mensaje parecido a:
+---
 
-INFO Application key set successfully.
+# Ejecutar el proyecto
 
-despues debe de colocar el comando: php artisan config:clear
+Levantar el servidor:
 
-despues le debe de aparecer otro mensaje parecido a:
+```bash
+php artisan serve
+```
 
-INFO Configuration cache cleared successfully.
+La aplicación quedará disponible en:
 
-luego debe de colocar el comando:
+```text
+http://127.0.0.1:8000
+```
 
-php artisan cache:clear
+URL base de la API:
 
-despues le debe de aparecer otro mensaje parecido a:
+```text
+http://127.0.0.1:8000/api
+```
 
-INFO  Application cache cleared successfully.
+---
 
-<<<<<<< HEAD
-despues debes de verificar en el archivo .env y debes bucar:
+# Autenticación
 
- git
- APP_KEY=
+Para acceder a las rutas protegidas necesitas un token.
 
-y debes de aparecer algo por ejemplo:
+Puedes obtenerlo de dos formas:
 
-APP_KEY=base64:F6YhAKaqa/2cbSLXP6HVjiucNfd/87Bpik6kIuwXfEo=
+1. Registrando un usuario.
+2. Iniciando sesión.
 
-entoces la clabe ya existe y despues debe de colocar en la terminal de Visual Studio Code 
-debes de colocar nuevamente el comando de:
+Guarda el token generado porque será necesario para consumir las rutas protegidas.
 
-php artisan test
+---
 
-<<<<<<< HEAD
-y todo debe de aparecer con chulitos verdes que significara OK.
-=======
-y todo debe de aparecer con culitos verdes que significara OK.
->>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
+# Registro de usuario
 
+### Endpoint
 
+```http
+POST /api/register
+```
 
-despues debes de el comando de:
-<<<<<<< HEAD
+### Ejemplo
 
-php artisan tinker
-
-=======
-php artisan tinker
->>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
-despues te va aparecer una
-">"
-debes de agregar lo siguiente:
-
-App\Models\User::first();
-
-y te va aparecer:
-
-= null
-
-y va aparecer otra:
-">"
-y tienes que agregar: use App\Models\User;
-
-y tambien tienes que agregar: use Illuminate\Support\Facedes\Hash;
-
-te aparecera otra:
-
-">"
-
-debes agregar User::create([
-    . 'name' => 'Breiner',
-    . 'email' => 'breiner@gmail.com',
-    . 'password' => bcrypt('123456'),
-    . ]);
-
-<<<<<<< HEAD
-despues de darle enter o intro y te va aparecer algo parecido a:
-=======
-despues de darle enter o intro te va aparecer algo parecido a:
->>>>>>> f96ac54 (mejoramiento de los avances del proyecto)
-
-= App\Models\User {#1582
-    name: "Breiner",
-    email: "breiner@gmail.com",
-    #password: "\$2y\$12\$pVoOYmOcuDmaNpH84NbqHeQftZQtAwoB6V5weVmIC5LQKhQ84MWjO",
-    updated_at: "2026-06-16 04:41:13",
-    created_at: "2026-06-16 04:41:13",
-    id: 1,
-  }
-
-despues te va a parecer un: 
-
-">"
-
-tienes que agrearle lo sigiente: exit
-
-y te debe aparecer un mesaje:
-
-INFO  Goodbye.
-
-despues debes de correr el comando de: php artisan serve
-
-despues de eso tienes que abrir una nueva terminal pero de Git Bash para abrirlo desde donde estas tienes que darle a
-
-la flecha que esta en el signo de "+" y debes de seleccionar Git Bash.
-
-despues que se habra la terminal de Git Bash tienes que agregar la siguiente linea de comando:
-
-curl -X POST "http://127.0.0.1:8000/api/login" -H "Content-Type: application/json" -d '{"email":"breiner@gmail.com","password":"123456"}'
-
-despues de eso te debe de carcar una llave token por ejemplo:
-
-{"token":"1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea"}
-
-despues tendras que colocar el siguiente comando:
-
-curl -X POST "http://127.0.0.1:8000/api/empleados" \
--H "Authorization: Bearer TU_TOKEN" \
+```bash
+curl -X POST http://127.0.0.1:8000/api/register \
 -H "Content-Type: application/json" \
--d '{"nombre":"Breiner","apellido":"Bermudez","fecha_de_nacimiento":"2003-06-24","fecha_de_ingreso":"2026-07-15","salario":300000,"estado":"activo","id_cargo":1}'
+-H "Accept: application/json" \
+-d '{
+  "name":"breiner",
+  "email":"hernandez@example.com",
+  "password":"12345678"
+}'
+```
 
-y tendrias que cambiar lo que dice TU_TOKEN por 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea
+### Respuesta esperada
 
-que en el caso de este ejemplo la llave token seria: 1|SZNZleZoxOQzRsldli4PlA0Iqh1d3QfP1zJiTZHX1b53dcea
+```json
+{
+  "success": true,
+  "token": "1|xxxxxxxxxxxxxxxxxxxxxxxx",
+  "message": "Usuario creado"
+}
+```
 
-despues de hacer este cambio tendrias que darle a enter y esto lo que tendria que hacer es crear y agregar el usuario
-creado a la base de datos.
+---
+
+# Inicio de sesión
+
+### Endpoint
+
+```http
+POST /api/login
+```
+
+### Ejemplo
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/login \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-d '{
+  "email":"hernandez@example.com",
+  "password":"12345678"
+}'
+```
+
+### Respuesta esperada
+
+```json
+{
+  "success": true,
+  "token": "4|xxxxxxxxxxxxxxxxxxxx",
+  "message": "Usuario ha iniciado sesión correctamente"
+}
+```
+
+---
+
+# Cerrar sesión
+
+### Endpoint
+
+```http
+POST /api/logout
+```
+
+### Ejemplo
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/logout \
+-H "Authorization: Bearer TU_TOKEN_AQUI" \
+-H "Accept: application/json"
+```
+
+### Respuesta
+
+```json
+{
+  "success": true,
+  "message": "Cierre de sesión exitosa"
+}
+```
+
+---
+
+# Uso del Token
+
+Ejemplo:
+
+```bash
+curl http://127.0.0.1:8000/api/empleados \
+-H "Authorization: Bearer TU_TOKEN_AQUI" \
+-H "Accept: application/json"
+```
+
+---
+
+# Resumen de Endpoints
+
+| Módulo          | Método    | Ruta                            | Protegida | Descripción         |
+| --------------- | --------- | ------------------------------- | --------- | ------------------- |
+| Auth            | POST      | `/api/register`                 | No        | Registrar usuario   |
+| Auth            | POST      | `/api/login`                    | No        | Iniciar sesión      |
+| Auth            | POST      | `/api/logout`                   | Sí        | Cerrar sesión       |
+| Empleados       | GET       | `/api/empleados`                | Sí        | Listar empleados    |
+| Empleados       | POST      | `/api/empleados`                | Sí        | Crear empleado      |
+| Empleados       | GET       | `/api/empleados/{id}`           | Sí        | Buscar empleado     |
+| Empleados       | GET       | `/api/detalle_de_empleado/{id}` | Sí        | Detalle completo    |
+| Empleados       | PUT/PATCH | `/api/empleados/{id}`           | Sí        | Actualizar empleado |
+| Empleados       | DELETE    | `/api/empleados/{id}`           | Sí        | Eliminar empleado   |
+| Cargos          | GET       | `/api/cargos`                   | Sí        | Listar cargos       |
+| Cargos          | POST      | `/api/cargos`                   | Sí        | Crear cargo         |
+| Cargos          | GET       | `/api/cargos/{id}`              | Sí        | Buscar cargo        |
+| Cargos          | PUT/PATCH | `/api/cargos/{id}`              | Sí        | Actualizar cargo    |
+| Cargos          | DELETE    | `/api/cargos/{id}`              | Sí        | Eliminar cargo      |
+| Funciones Cargo | GET       | `/api/FuncionesCargo`           | Sí        | Listar funciones    |
+| Funciones Cargo | POST      | `/api/FuncionesCargo`           | Sí        | Crear función       |
+| Funciones Cargo | GET       | `/api/FuncionesCargo/{id}`      | Sí        | Buscar función      |
+| Funciones Cargo | PUT/PATCH | `/api/FuncionesCargo/{id}`      | Sí        | Actualizar función  |
+| Funciones Cargo | DELETE    | `/api/FuncionesCargo/{id}`      | Sí        | Eliminar función    |
+
+---
+
+# Flujo recomendado para probar la API
+
+1. Clonar el repositorio.
+2. Ejecutar `composer install`.
+3. Ejecutar `npm install`.
+4. Crear el archivo `.env`.
+5. Configurar la base de datos.
+6. Ejecutar:
+
+```bash
+php artisan key:generate
+```
+
+7. Ejecutar:
+
+```bash
+php artisan migrate --seed
+```
+
+8. Levantar el servidor:
+
+```bash
+php artisan serve
+```
+
+9. Registrar un usuario o iniciar sesión.
+10. Guardar el token.
+11. Consumir las rutas protegidas usando:
+
+```http
+Authorization: Bearer TU_TOKEN_AQUI
+```
+
+Orden recomendado:
+
+1. Crear/Listar cargos.
+2. Crear funciones de cargo.
+3. Crear empleados.
+4. Consultar detalle de empleado.
+
+---
+
+# Errores comunes
+
+## Token inválido o ausente
+
+Respuesta:
+
+```json
+{
+  "message": "Unauthenticated."
+}
+```
+
+### Solución
+
+Enviar correctamente:
+
+```http
+Authorization: Bearer TU_TOKEN_AQUI
+```
+
+---
+
+## Email duplicado
+
+Laravel devolverá un error de validación.
+
+### Solución
+
+* Utilizar otro correo.
+* Iniciar sesión con el usuario existente.
+
+---
+
+## ID no encontrado
+
+Ejemplo:
+
+```json
+{
+  "success": false,
+  "message": "Empleado no encontrado o no existe"
+}
+```
+
+### Solución
+
+Verificar que el ID exista previamente.
+
+---
+
+## Error de base de datos
+
+Posibles causas:
+
+* Base de datos inexistente.
+* Credenciales incorrectas.
+* Migraciones no ejecutadas.
+* `id_cargo` inexistente.
+
+### Solución
+
+```bash
+php artisan migrate --seed
+```
+
+Verificar:
+
+```env
+DB_DATABASE=db_3066552
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+# Pruebas
+
+Ejecutar todas las pruebas:
+
+```bash
+php artisan test
+```
+
+Ejecutar pruebas específicas:
+
+```bash
+php artisan test --filter=CargoTest
+```
+
+```bash
+php artisan test --filter=FuncionesCargoTest
+```
+
+```bash
+php artisan test --filter=EmpleadoTest
+```
+
+Las pruebas cubren operaciones de:
+
+* Crear
+* Consultar
+* Actualizar
+* Eliminar
+
+para los módulos de Empleados, Cargos y Funciones de Cargo.

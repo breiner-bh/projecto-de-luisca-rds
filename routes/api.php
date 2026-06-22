@@ -19,3 +19,4 @@ Route::apiResource('FuncionesCargo',FuncionesCargoController::class)->middleware
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
+Route::get('/detalle_de_empleado/{empleado}',[EmpleadoController::class,'detalle_de_empleado'])->middleware('auth:sanctum');

@@ -26,7 +26,7 @@ class EmpleadoTest extends TestCase
             'fecha_de_nacimiento'=>'2003-06-24',
             'fecha_de_ingreso'=>'2026-07-15',
             'salario'=>fake()->numberBetween(1000000,5000000),
-            'estado'=>Arr::random('activo','inactivo'),
+            'estado'=>fake()->randomElement(['activo','inactivo']),
             'id_cargo'=>1
         ]);
         $this->assertDatabaseHas('empleados', [

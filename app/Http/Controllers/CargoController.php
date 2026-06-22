@@ -26,30 +26,35 @@ class CargoController extends Controller
     }
     public function index()
     {
-        function index()
-        {
-            $cargo = Cargo::paginate(5);
-            if ($cargo->isEmpty()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'No se encontradon cargo',
-                ], 404);
-            } else {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Lista de los cargos',
-                    'data' => $cargo
-                ], 200);
-            }
+        $cargo = Cargo::paginate(5);
+        if ($cargo->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'No se encontradon cargo',
+            ], 404);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Lista de los cargos',
+                'data' => $cargo
+            ], 200);
         }
     }
-    public function show(Cargo $cargo)
+    public function show(int $id)
     {
-        return response()->json([
-            'succes' => true,
-            'message' => 'Cargo encontrado',
-            'data' => $cargo
-        ], 200);
+        $cargo = Cargo::find($id);
+        if (!$cargo) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Cargo no encontrado o no se encuentra en existencia.',
+            ], 404);
+        } else {
+            return response()->json([
+                'success' => true,
+                'message' => 'Cargo encontrado',
+                'data' => $cargo
+            ], 200);
+        }
     }
     public function update(Request $request, Cargo $cargo)
     {
@@ -63,7 +68,7 @@ class CargoController extends Controller
         ]);
         return response()->json([
             'success' => true,
-            'message' => 'Cargo actualizado con exitosamento.',
+            'message' => 'Cargo actualizado exitosamente.',
             'data' => $cargo
         ], 200);
     }
@@ -72,9 +77,8 @@ class CargoController extends Controller
         $cargo = Cargo::find($id);
         if (is_null($cargo)) {
             return response()->json([
-                'success' => true,
-                'message' => 'El cargo que esta buscando no existe.',
-                'data' => $cargo
+                'success' => false,
+                'message' => 'El cargo que esta buscando no existe.'
             ], 404);
         } else {
             $cargo->delete();

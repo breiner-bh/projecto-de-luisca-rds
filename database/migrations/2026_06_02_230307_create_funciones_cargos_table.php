@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('funciones_cargos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion_funcion')->nullable()->unique();
-            $table->string('estado');
-            $table->foreignId('id_cargo')->constrained('cargos')->onDelete('cascade');
+            $table->string('estado')->nullable(true);
+           // $table->foreignId('id_cargo')->constrained('cargos')->onDelete('cascade');
+            $table->unsignedBigInteger('id_cargo')->nullable(true);
             $table->timestamps();
         });
     }
