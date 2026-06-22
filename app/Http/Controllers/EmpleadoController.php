@@ -7,11 +7,12 @@ use App\Models\funcionesCargo;
 use Illuminate\Http\Request;
 
 
+
 class EmpleadoController extends Controller
 {
     public function store(Request $request)
     {
-        $datos = $request->validator([
+        $datos = $request->validate([
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'fecha_de_nacimiento' => ['required', 'date', 'before_or_equal:today'],
