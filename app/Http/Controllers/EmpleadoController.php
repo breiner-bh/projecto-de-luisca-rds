@@ -37,9 +37,9 @@ class EmpleadoController extends Controller
         ], 201);
     }
 
-    public function index(int $id)
+    public function index()
     {
-        $empleados = Empleado::firnd($id);
+        $empleados = Empleado::paginate(5);
         if ($empleados->isEmpty()) {
             return response()->json([
                 'success' => true,
