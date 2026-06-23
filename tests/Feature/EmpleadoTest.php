@@ -24,7 +24,7 @@ class EmpleadoTest extends TestCase
             'nombre'=>'Breiner',
             'apellido'=>'Bermudez',
             'fecha_de_nacimiento'=>'2003-06-24',
-            'fecha_de_ingreso'=>'2026-07-15',
+            'fecha_de_ingreso'=>'2026-06-23',
             'salario'=>3000000,
             'estado'=>'activo',
             'id_cargo'=>1
@@ -33,7 +33,7 @@ class EmpleadoTest extends TestCase
             'nombre' => 'Breiner',
             'apellido' => 'Bermudez',
             'fecha_de_nacimiento' => '2003-06-24',
-            'fecha_de_ingreso' => '2026-07-15',
+            'fecha_de_ingreso' => '2026-06-23',
             'salario' => 3000000,
             'estado' => 'activo',
             'id_cargo' => 1
