@@ -36,7 +36,7 @@ class FuncionesCargoController extends Controller
 
     {
         $FuncionesCargo = FuncionesCargo::paginate(5);
-        if (!$FuncionesCargo->isEmpty()) {
+        if ($FuncionesCargo->isEmpty()) {
             return response()->json([
                 'success' => false,
                 'message' => 'No se encontradon registros de las funciones de cargo',
