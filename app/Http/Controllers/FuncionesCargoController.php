@@ -75,8 +75,8 @@ class FuncionesCargoController extends Controller
         ]);     
         $FuncionesCargo->update([
             'descripcion_funcion' => $datos['descripcion_funcion'],
-            'estado' => $datos['estado'],
-            'id_cargo' => $datos ['id_cargo']
+            'id_cargo' => $datos ['id_cargo'],
+            'estado' => $datos['estado']
         ]);
         if(!$FuncionesCargo)
             {
