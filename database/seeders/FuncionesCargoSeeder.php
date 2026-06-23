@@ -13,6 +13,6 @@ class FuncionesCargoSeeder extends Seeder
      */
     public function run(): void
     {
-        FuncionesCargo::factory(05)->create();
+        FuncionesCargo::factory(200)->create();
     }
 }
